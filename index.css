@@ -24,6 +24,8 @@ html{
 body{
     background: var(--bg-color);
     color: var(--text-color);
+    position: relative;
+    min-height: 100vh;
 }
 
 section{
@@ -364,6 +366,8 @@ span {
     flex-wrap: wrap;
     padding: 2rem 9%;
     background: var(--second-bg-color);
+    z-index: 1;
+    position: relative;
 }
 
 .footer-text p{
@@ -534,7 +538,65 @@ span {
 #ai-assistant-form button:hover {
     background: linear-gradient(135deg, #1a6ed8 0%, #2d8cff 100%);
 }
+
+/* Ensure AI Assistant Widget is always on top and not hidden by other elements */
+#ai-assistant-widget, #ai-assistant-toggle {
+    z-index: 9999 !important;
+}
+
+/* Fix for possible body overflow or stacking issues */
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Ensure widget is not covered by footer or other fixed elements */
+footer, .footer {
+    z-index: 1;
+    position: relative;
+}
+
 @media (max-width: 500px) {
+    html {
+        font-size: 50%;
+    }
+    body {
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+    section {
+        padding: 6rem 4vw 2rem 4vw;
+        min-height: unset;
+    }
+    .header {
+        padding: 1.2rem 4vw;
+    }
+    .home-img img,
+    .about-img img {
+        width: 90vw;
+        margin-top: 2rem;
+    }
+    .about-img {
+        width: 90vw;
+    }
+    .portfolio-container {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 0 2vw;
+    }
+    .services-container {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 0 2vw;
+    }
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem 4vw;
+    }
+    .contact form {
+        padding: 0 2vw;
+    }
     #ai-assistant-widget {
         width: 98vw;
         right: 1vw;
